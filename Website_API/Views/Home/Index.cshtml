@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewData["Title"] = "Home";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data Button</title>
+ 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button id="fetchButton">Fetch Data</button>
+    <div id="dataContainer">  
+    </div>
+    <table id="TableData"       >
+       
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Salary</th>
+                <th>Province</th>
+                <th>Address</th>
+                <th>Telephone </th>
+
+            </tr>
+
+        </thead>
+      
+        <tbody>
+            
+        </tbody>
+    </table>
+   
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#fetchButton").click(function () {
+           
+            var apiUrl = '/CallApi/GetList'; //link url สำหรับดึงข้อมูล
+
+          
+            $.get(apiUrl, function (data, status) { //เรียกใช้งน function API
+             
+                displayData(data);
+            }).fail(function () {
+                
+                console.error('There was a problem with the fetch operation');
+            });
+        });
+
+
+
+        
+
+
+
+        function displayDataInterface(data) { //ไว้ใช้จัดการแสดงผลข้อมูลหน้าเว็บเป็นรูปแบบของตาราง
+            console.log(data)
+          
+            var dataContainer = $("#dataContainer");
+          
+            dataContainer.empty();
+
+            
+            $.each(data, function (index, item) {
+              
+            });
+        }
+        
+        function displayData(data) {
+            console.log(data);
+            
+          
+            $.each(data, function (index, item) {
+                
+                var tbody = $("#TableData tbody");
+
+
+                var data_table = "";
+                data_table += "<tr>";
+                data_table += "<td> " + item.name + " </td>";
+                data_table += "<td> " + item.salary + " </td>";
+                data_table += "<td> " + item.provice  +  "</td>";
+                data_table += "<td> " + item.address + " </td>";
+                data_table += "<td> " + item.telephone + " </td>";
+                data_table += "</tr>";
+
+                tbody.append(data_table);
+
+
+
+                
+
+
+                });
+            }
+        });
+
+
+</script>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
