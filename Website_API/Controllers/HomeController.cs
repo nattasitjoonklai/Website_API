@@ -41,20 +41,7 @@ namespace Website_API.Controllers
         }
 
 
-        public ActionResult DisplayData()
-        {
-            // Retrieve data, status, and HTTP method type from TempData
-            string responseData = TempData["ApiResponse"] as string;
-            string apiStatus = TempData["ApiStatus"] as string;
-            string httpMethod = TempData["HttpMethod"] as string;
-
-            // Pass the data, status, and HTTP method type to the view
-            ViewBag.ApiResponse = responseData;
-            ViewBag.ApiStatus = apiStatus;
-            ViewBag.HttpMethod = httpMethod;
-
-            return View();
-        }
+       
     }
 
 }
